@@ -1,76 +1,128 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/site/PageShell";
-import { PageHero } from "@/components/site/PageHero";
-import { ArrowUpRight } from "lucide-react";
-import hero from "@/assets/hero-tennis.jpg";
-import coaching from "@/assets/coaching.jpg";
-import courtAerial from "@/assets/court-aerial.jpg";
-import racket from "@/assets/racket-detail.jpg";
-import covered from "@/assets/covered-court.jpg";
-import lifestyle from "@/assets/lifestyle.jpg";
+import { Trophy, Target, Users, CalendarClock, Zap, CheckCircle2 } from "lucide-react";
 
 export const Route = createFileRoute("/modalidades")({
-  head: () => ({
-    meta: [
-      { title: "Modalidades — Tênis, Squash e Beach Tennis em Curitiba" },
-      { name: "description", content: "Tênis infantil e adulto, aulas particulares, treino competitivo, squash, beach tennis e locação de quadras de saibro no Eco Tênis Academia." },
-      { property: "og:title", content: "Modalidades — Eco Tênis Academia" },
-      { property: "og:description", content: "Programa completo para todas as idades e níveis em Santa Felicidade, Curitiba." },
-      { property: "og:url", content: "/modalidades" },
-    ],
-    links: [{ rel: "canonical", href: "/modalidades" }],
-  }),
-  component: ModalitiesPage,
+  component: ModalidadesPage,
 });
 
-const items = [
-  { name: "Tênis Infantil", age: "5 — 13 anos", img: coaching, desc: "Iniciação esportiva com metodologia progressiva, coordenação motora e formação de valores através do tênis.", benefits: ["Disciplina e foco", "Coordenação motora", "Socialização"] },
-  { name: "Tênis Adulto", age: "Todos os níveis", img: courtAerial, desc: "Aulas em grupo organizadas por nível técnico, do primeiro contato com a raquete ao jogo de fundo competitivo.", benefits: ["Qualidade de vida", "Networking saudável", "Performance esportiva"] },
-  { name: "Aula Particular", age: "Sob agendamento", img: racket, desc: "Acompanhamento individual, totalmente personalizado, com análise técnica detalhada e progressão acelerada.", benefits: ["Atenção exclusiva", "Horário flexível", "Resultado rápido"] },
-  { name: "Treino Competitivo", age: "Federados", img: hero, desc: "Preparação completa para o circuito federado, com sparring de alto nível e preparação física integrada.", benefits: ["Ranking estadual", "Sparring qualificado", "Preparação tática"] },
-  { name: "Locação de Quadras", age: "Sócios e visitantes", img: covered, desc: "Quadras de saibro cobertas e descobertas, com manutenção diária, disponíveis para reserva individual.", benefits: ["Saibro original", "Disponibilidade ampla", "Iluminação noturna"] },
-  { name: "Squash", age: "Adulto", img: courtAerial, desc: "Quadra oficial de squash — um dos esportes mais completos do mundo, com aulas e jogos avulsos.", benefits: ["Condicionamento", "Agilidade", "Concentração"] },
-  { name: "Beach Tennis", age: "Todas as idades", img: lifestyle, desc: "A modalidade que conquistou Curitiba. Aulas em areia profissional para iniciantes e competitivos.", benefits: ["Diversão garantida", "Baixo impacto", "Convívio social"] },
-  { name: "Condicionamento Físico", age: "Atletas e amadores", img: coaching, desc: "Preparação esportiva específica para tenistas: força, mobilidade, resistência e prevenção de lesões.", benefits: ["Programa individual", "Foco esportivo", "Prevenção"] },
+const services = [
+  {
+    category: "Ensino e Formação",
+    icon: Target,
+    items: [
+      {
+        title: "Tênis Infantil (Iniciação)",
+        desc: "Metodologia lúdica e progressiva para crianças a partir de 5 anos, focada no desenvolvimento da coordenação motora, agilidade e disciplina esportiva em um ambiente seguro.",
+      },
+      {
+        title: "Aulas para Adultos",
+        desc: "Turmas em grupo niveladas. Atendemos desde o adulto iniciante (primeiro contato com a raquete) até o nível avançado, com foco intenso na correção biomecânica de golpes e tática.",
+      },
+      {
+        title: "Aula Particular",
+        desc: "Atenção técnica e tática 100% exclusiva do professor. A modalidade ideal para quem demanda flexibilidade de horários e busca uma evolução técnica extremamente acelerada.",
+      }
+    ]
+  },
+  {
+    category: "Performance e Eventos",
+    icon: Trophy,
+    items: [
+      {
+        title: "Treino Competitivo",
+        desc: "O mais alto escalão de rendimento do clube. Preparação tática, técnica, física e psicológica rigorosa para atletas que disputam o circuito oficial estadual e nacional.",
+      },
+      {
+        title: "Torneios e Circuitos",
+        desc: "Sediamos as etapas oficiais do FPT Series 250 e 500, além do nosso aclamado Circuito Interno de Duplas que movimenta toda a comunidade do Eco Tênis.",
+      },
+      {
+        title: "Clínicas Intensivas",
+        desc: "Módulos de curta duração focados em fundamentos altamente específicos, como biomecânica do saque ou táticas avançadas para jogos de duplas.",
+      }
+    ]
+  },
+  {
+    category: "Locação e Outros Esportes",
+    icon: CalendarClock,
+    items: [
+      {
+        title: "Locação de Quadras",
+        desc: "Aluguel avulso ou pacotes para mensalistas. Disponibilidade de quadras descobertas e cobertas, com iluminação de LED noturna padrão torneio.",
+      },
+      {
+        title: "Squash",
+        desc: "Locação de quadra oficial fechada para a prática de Squash. Excelente para ganho de reflexo e condicionamento cardiovascular intenso.",
+      },
+      {
+        title: "Beach Tennis",
+        desc: "Modalidade disponível em nossa arena de areia. Aulas e locações voltadas para o esporte que une intensidade física e descontração social.",
+      }
+    ]
+  }
 ];
 
-function ModalitiesPage() {
+function ModalidadesPage() {
   return (
-    <PageShell overlayHeader>
-      <PageHero
-        eyebrow="Modalidades"
-        title={<>Um programa completo<br /><span className="font-serif-display italic">para cada jogador</span>.</>}
-        subtitle="Do mini-tênis infantil ao treino federado, do squash ao beach tennis — todas as modalidades em um único endereço."
-        image={hero}
-      />
+    <PageShell>
+      <div className="pt-32 pb-16 md:pt-48 md:pb-24 border-b border-border/50 bg-secondary">
+        <div className="container-prose">
+          <div className="eyebrow text-accent animate-rise">O nosso portfólio</div>
+          <h1 className="mt-6 font-display font-light text-4xl md:text-6xl lg:text-7xl tracking-tight text-balance animate-rise delay-100">
+            Muito além do <span className="font-serif-display italic text-accent">lazer</span>.
+          </h1>
+          <p className="mt-8 max-w-2xl text-lg text-muted-foreground leading-relaxed animate-rise delay-200">
+            Nossa arquitetura de serviços atende a três frentes distintas: a formação técnica irrepreensível, a alta performance competitiva e a flexibilidade para quem busca apenas bater uma bola com os amigos após o trabalho.
+          </p>
+        </div>
+      </div>
 
-      <section className="py-24 md:py-32">
+      <section className="py-20 md:py-32">
         <div className="container-prose space-y-24">
-          {items.map((m, i) => (
-            <article key={m.name} className={`grid md:grid-cols-12 gap-10 items-center ${i % 2 === 1 ? "md:[&>div:first-child]:order-2" : ""}`}>
-              <div className="md:col-span-7">
-                <div className="aspect-[4/3] overflow-hidden bg-muted">
-                  <img src={m.img} alt={m.name} loading="lazy" className="h-full w-full object-cover" />
+          {services.map((section, idx) => (
+            <div key={idx} className="grid md:grid-cols-12 gap-8 md:gap-16">
+              <div className="md:col-span-4">
+                <div className="sticky top-32">
+                  <section.icon className="h-10 w-10 text-accent mb-6" />
+                  <h2 className="font-display text-3xl md:text-4xl">{section.category}</h2>
+                  <div className="hairline mt-6 w-12" />
                 </div>
               </div>
-              <div className="md:col-span-5">
-                <div className="eyebrow text-accent">{m.age}</div>
-                <h2 className="mt-4 font-display font-light text-4xl md:text-5xl tracking-tight">{m.name}</h2>
-                <p className="mt-6 text-muted-foreground leading-relaxed">{m.desc}</p>
-                <ul className="mt-8 space-y-2 border-t border-border pt-6">
-                  {m.benefits.map((b) => (
-                    <li key={b} className="flex items-center gap-3 text-sm">
-                      <span className="h-px w-6 bg-accent" />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-                <Link to="/contato" className="mt-10 inline-flex items-center gap-2 link-underline text-[12px] tracking-[0.22em] uppercase">
-                  Agendar experiência <ArrowUpRight className="h-4 w-4" />
-                </Link>
+              <div className="md:col-span-8 space-y-12">
+                {section.items.map((item, i) => (
+                  <div key={i} className="group p-8 border border-border/50 bg-background hover:border-accent/50 transition-colors">
+                    <h3 className="font-display text-2xl font-medium flex items-center gap-3">
+                      <CheckCircle2 className="h-5 w-5 text-accent opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                      {item.title}
+                    </h3>
+                    <p className="mt-4 text-muted-foreground leading-relaxed pl-0 group-hover:pl-8 transition-all">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))}
               </div>
-            </article>
+            </div>
           ))}
+        </div>
+      </section>
+      
+      {/* FINAL CTA FIXO DA PÁGINA */}
+      <section className="bg-ink text-bone py-24 text-center">
+        <div className="container-prose max-w-2xl">
+          <Zap className="h-12 w-12 text-accent mx-auto mb-6" />
+          <h2 className="font-display text-3xl md:text-5xl font-light mb-6">Pronto para entrar em quadra?</h2>
+          <p className="text-bone/70 mb-10 leading-relaxed">
+            Nossa secretaria está pronta para agendar a sua aula experimental ou reservar a sua quadra para hoje mesmo.
+          </p>
+          <a
+            href="https://wa.me/5541991319654"
+            target="_blank"
+            rel="noopener"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-accent text-accent-foreground text-[12px] tracking-[0.22em] uppercase font-medium hover:bg-bone hover:text-ink transition-colors"
+          >
+            Falar com a Secretaria
+          </a>
         </div>
       </section>
     </PageShell>
