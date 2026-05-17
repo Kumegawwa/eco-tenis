@@ -1,18 +1,16 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import tsconfigPaths from "vite-tsconfig-paths";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import viteReact from "@vitejs/plugin-react";
+import tsConfigPaths from "vite-tsconfig-paths";
+import tailwindcss from "@tailwindcss/vite";
 
-// Configuração padrão limpa (sem dependências do Lovable)
 export default defineConfig({
   plugins: [
-    react(),
-    tsconfigPaths(),
+    tanstackStart({
+      server: { entry: "./src/server.ts" }
+    }),
+    viteReact(),
+    tailwindcss(),
+    tsConfigPaths(),
   ],
-  server: {
-    port: 3000,
-  },
-  build: {
-    outDir: "dist",
-    sourcemap: false,
-  }
 });
