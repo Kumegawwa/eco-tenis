@@ -20,7 +20,7 @@ function RootComponent() {
   }, []);
 
   useEffect(() => {
-    setMobileMenuOpen(false); // Fecha o menu mobile ao trocar de página
+    setMobileMenuOpen(false);
   }, [location.pathname]);
 
   return (
@@ -29,10 +29,10 @@ function RootComponent() {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Eco Tênis Academia</title>
-        {/* HeadContent é o componente correto que puxa o SEO das outras páginas */}
         <HeadContent />
       </head>
       <body className="min-h-screen flex flex-col bg-background text-foreground antialiased selection:bg-accent selection:text-white">
+        
         {/* HEADER PREMIUM */}
         <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-ink/95 backdrop-blur-md py-4 border-b border-white/5 shadow-2xl' : 'bg-transparent py-6'}`}>
           <div className="container-prose flex items-center justify-between">
@@ -40,7 +40,6 @@ function RootComponent() {
               Eco<span className="font-serif-display italic text-accent lowercase">Tênis</span>
             </Link>
 
-            {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-8 text-[11px] tracking-[0.2em] uppercase text-bone/80">
               <Link to="/sobre" className="hover:text-accent transition-colors [&.active]:text-accent">A História</Link>
               <Link to="/estrutura" className="hover:text-accent transition-colors [&.active]:text-accent">Estrutura</Link>
@@ -51,17 +50,15 @@ function RootComponent() {
 
             <div className="hidden md:block">
               <a href="https://wa.me/5541991319654" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 border border-accent/50 text-accent text-[10px] tracking-widest uppercase hover:bg-accent hover:text-bone transition-colors">
-                Agendar Aula
+                Falar no WhatsApp
               </a>
             </div>
 
-            {/* Mobile Toggle */}
             <button className="md:hidden text-bone z-50" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? <X /> : <Menu />}
             </button>
           </div>
 
-          {/* Mobile Menu Overlay */}
           {mobileMenuOpen && (
             <div className="fixed inset-0 bg-ink z-40 flex flex-col items-center justify-center gap-8 text-bone text-sm tracking-widest uppercase animate-in fade-in zoom-in duration-300">
               <Link to="/" className="hover:text-accent transition-colors">Início</Link>
@@ -117,7 +114,7 @@ function RootComponent() {
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="h-4 w-4 text-accent shrink-0" />
-                  <span>(41) 3272-9654 / 99131-9654</span>
+                  <span>(41) 3272-9654<br/>(41) 99131-9654</span>
                 </li>
               </ul>
             </div>
@@ -131,14 +128,30 @@ function RootComponent() {
               </ul>
             </div>
           </div>
-          <div className="container-prose mt-16 pt-8 border-t border-bone/5 text-xs flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>© {new Date().getFullYear()} Eco Tênis Academia. Todos os direitos reservados.</p>
-            <p>Esporte para toda vida.</p>
+          
+          <div className="container-prose mt-16 pt-8 border-t border-bone/10 flex flex-col justify-center items-center gap-6">
+            {/* Assinatura Minimalista Premium */}
+            <div className="flex flex-col items-center justify-center gap-2 text-xs text-bone/60 text-center">
+              <p>© {new Date().getFullYear()} Eco Tênis Academia. Todos os direitos reservados.</p>
+              
+              <div className="text-[11px] font-sans tracking-wider text-bone/40 flex items-center gap-1.5 mt-1 select-none">
+                <span>Designed with 💖 by</span>
+                <a 
+                  href="https://www.linkedin.com/in/lucas-kumegawa/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="group inline-flex items-center text-bone transition-all duration-300"
+                >
+                  <span className="font-oleo text-[16px] text-accent tracking-normal normal-case ml-1 transition-all duration-300 group-hover:text-bone group-hover:scale-105 block origin-left">
+                    Kumegawa
+                  </span>
+                </a>
+              </div>
+            </div>
           </div>
         </footer>
 
         <WhatsAppFab />
-
         <ScrollRestoration />
         <Scripts />
       </body>
