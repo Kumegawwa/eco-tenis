@@ -2,6 +2,7 @@ import { Outlet, createRootRoute, Link, useLocation } from "@tanstack/react-rout
 import { WhatsAppFab } from "@/components/site/WhatsAppFab";
 import { Instagram, MapPin, Phone, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
+import "../styles.css";
 
 export const Route = createRootRoute({
   component: RootComponent,
