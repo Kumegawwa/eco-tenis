@@ -135,7 +135,7 @@ function RootComponent() {
               <p>© {new Date().getFullYear()} Eco Tênis Academia. Todos os direitos reservados.</p>
               
               <div className="text-[11px] font-sans tracking-wider text-bone/40 flex items-center gap-1.5 mt-1 select-none">
-                <span>Designed with 💖 by</span>
+                <span>Designed by</span>
                 <a 
                   href="https://www.linkedin.com/in/lucas-kumegawa/" 
                   target="_blank" 
