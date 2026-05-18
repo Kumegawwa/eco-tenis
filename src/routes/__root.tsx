@@ -13,24 +13,38 @@ function RootComponent() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
+  // Monitora o scroll da página
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Fecha o menu ao trocar de rota
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
-  // Identifica se o usuário está na página inicial
+  // TRAVA DE SEGURANÇA MOBILE: Impede o scroll da página no fundo
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   const isHome = location.pathname === "/";
 
   return (
     <html lang="pt-BR">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* Trava de zoom nativo para melhorar a experiência de botões no celular */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <title>Eco Tênis Academia</title>
         <HeadContent />
       </head>
@@ -40,7 +54,7 @@ function RootComponent() {
         <header 
           className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
             isHome 
-              ? isScrolled 
+              ? isScrolled || mobileMenuOpen // Força o fundo escuro se o menu abrir no topo da Home
                 ? 'bg-ink/95 backdrop-blur-md py-4 border-b border-white/5 shadow-2xl' 
                 : 'bg-transparent py-6'
               : 'bg-ink/95 backdrop-blur-md py-4 border-b border-white/5 shadow-2xl'
@@ -74,7 +88,7 @@ function RootComponent() {
 
           {/* Mobile Menu Overlay */}
           {mobileMenuOpen && (
-            <div className="fixed inset-0 bg-ink z-40 flex flex-col items-center justify-center gap-8 text-bone text-sm tracking-widest uppercase animate-in fade-in zoom-in duration-300">
+            <div className="fixed inset-0 bg-ink z-40 flex flex-col items-center justify-center gap-8 text-bone text-sm tracking-widest uppercase animate-in fade-in duration-300 pt-16">
               <Link to="/" className="hover:text-accent transition-colors">Início</Link>
               <Link to="/sobre" className="hover:text-accent transition-colors">A História</Link>
               <Link to="/estrutura" className="hover:text-accent transition-colors">Estrutura</Link>
