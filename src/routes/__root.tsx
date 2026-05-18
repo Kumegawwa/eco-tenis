@@ -13,19 +13,16 @@ function RootComponent() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  // Monitora o scroll da página
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Fecha o menu ao trocar de rota
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
-  // TRAVA DE SEGURANÇA MOBILE: Impede o scroll da página no fundo
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -43,7 +40,6 @@ function RootComponent() {
     <html lang="pt-BR">
       <head>
         <meta charSet="utf-8" />
-        {/* Trava de zoom nativo para melhorar a experiência de botões no celular */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <title>Eco Tênis Academia</title>
         <HeadContent />
@@ -52,9 +48,9 @@ function RootComponent() {
         
         {/* HEADER PREMIUM ADAPTATIVO */}
         <header 
-          className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
             isHome 
-              ? isScrolled || mobileMenuOpen // Força o fundo escuro se o menu abrir no topo da Home
+              ? isScrolled
                 ? 'bg-ink/95 backdrop-blur-md py-4 border-b border-white/5 shadow-2xl' 
                 : 'bg-transparent py-6'
               : 'bg-ink/95 backdrop-blur-md py-4 border-b border-white/5 shadow-2xl'
@@ -80,27 +76,45 @@ function RootComponent() {
               </a>
             </div>
 
-            {/* Mobile Toggle */}
-            <button className="md:hidden text-bone z-50" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-              {mobileMenuOpen ? <X /> : <Menu />}
+            {/* Mobile Toggle Button */}
+            <button 
+              className="md:hidden text-bone z-50 p-2 focus:outline-none" 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle Menu"
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
-
-          {/* Mobile Menu Overlay */}
-          {mobileMenuOpen && (
-            <div className="fixed inset-0 bg-ink z-40 flex flex-col items-center justify-center gap-8 text-bone text-sm tracking-widest uppercase animate-in fade-in duration-300 pt-16">
-              <Link to="/" className="hover:text-accent transition-colors">Início</Link>
-              <Link to="/sobre" className="hover:text-accent transition-colors">A História</Link>
-              <Link to="/estrutura" className="hover:text-accent transition-colors">Estrutura</Link>
-              <Link to="/modalidades" className="hover:text-accent transition-colors">Modalidades</Link>
-              <Link to="/professores" className="hover:text-accent transition-colors">Professores</Link>
-              <Link to="/contato" className="hover:text-accent transition-colors">Contato</Link>
-              <a href="https://wa.me/5541991319654" target="_blank" rel="noopener noreferrer" className="mt-8 px-8 py-4 bg-accent text-bone text-xs hover:bg-bone hover:text-ink transition-colors">
-                Falar no WhatsApp
-              </a>
-            </div>
-          )}
         </header>
+
+        {/* MOBILE MENU OVERLAY - ISOLADO E FORA DO HEADER COM FUNDO VERDE PREMIUM */}
+        {mobileMenuOpen && (
+          <div className="fixed inset-0 bg-primary z-50 flex flex-col items-center justify-center gap-8 text-bone text-base tracking-[0.2em] uppercase animate-in fade-in zoom-in-95 duration-300">
+            {/* Botão interno de fechamento para consistência de navegação */}
+            <button 
+              className="absolute top-6 right-6 text-bone/80 hover:text-accent p-2 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <X className="h-7 w-7 stroke-[1.5]" />
+            </button>
+
+            <Link to="/" className="hover:text-accent transition-colors py-2 block font-display">Início</Link>
+            <Link to="/sobre" className="hover:text-accent transition-colors py-2 block font-display">A História</Link>
+            <Link to="/estrutura" className="hover:text-accent transition-colors py-2 block font-display">Estrutura</Link>
+            <Link to="/modalidades" className="hover:text-accent transition-colors py-2 block font-display">Modalidades</Link>
+            <Link to="/professores" className="hover:text-accent transition-colors py-2 block font-display">Professores</Link>
+            <Link to="/contato" className="hover:text-accent transition-colors py-2 block font-display">Contato</Link>
+            
+            <a 
+              href="https://wa.me/5541991319654" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="mt-6 px-8 py-4 bg-accent text-bone text-xs tracking-widest uppercase font-medium hover:bg-bone hover:text-ink transition-all duration-300 shadow-xl"
+            >
+              Falar no WhatsApp
+            </a>
+          </div>
+        )}
 
         <main className="flex-1 flex flex-col">
           <Outlet />
