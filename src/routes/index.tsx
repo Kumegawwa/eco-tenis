@@ -282,8 +282,8 @@ function HomePage() {
               Um clube pensado nos mínimos detalhes.
             </h2>
           </div>
-          <div className="grid grid-cols-12 gap-4 md:gap-6">
-            <div className="relative col-span-12 md:col-span-8 aspect-[16/10] overflow-hidden group">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <div className="relative aspect-[4/3] overflow-hidden group">
               <img src={courtAerial} alt="Quadras" loading="lazy" className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 text-bone">
@@ -291,28 +291,28 @@ function HomePage() {
                 <p className="text-sm opacity-80 mt-1">Manutenção diária impecável para preservar suas articulações.</p>
               </div>
             </div>
-            <div className="relative col-span-6 md:col-span-4 aspect-[4/5] md:aspect-auto overflow-hidden group">
+            <div className="relative aspect-[4/3] overflow-hidden group">
               <img src={covered} alt="Quadra Coberta" loading="lazy" className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 text-bone">
-                <h3 className="font-display text-xl font-medium">Cobertura</h3>
+                <h3 className="font-display text-2xl font-medium">Cobertura Premium</h3>
                 <p className="text-sm opacity-80 mt-1">Seu treino garantido com chuva ou sol.</p>
               </div>
             </div>
-            <div className="relative col-span-6 md:col-span-4 aspect-square overflow-hidden group">
+            <div className="relative aspect-[4/3] overflow-hidden group">
               <img src={coaching} alt="Vestiários e Fitness" loading="lazy" className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 text-bone">
-                <h3 className="font-display text-xl font-medium">Vestiários Premium e Fitness</h3>
+                <h3 className="font-display text-2xl font-medium">Vestiários e Fitness</h3>
                 <p className="text-sm opacity-80 mt-1">Estrutura e conforto total para o pós-jogo executivo.</p>
               </div>
             </div>
-            <div className="relative col-span-12 md:col-span-8 aspect-[16/9] overflow-hidden group">
+            <div className="relative aspect-[4/3] overflow-hidden group">
               <img src={lifestyle} alt="Área de Convivência" loading="lazy" className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 text-bone">
-                <h3 className="font-display text-2xl font-medium">Lanchonete e Área de Convivência</h3>
-                <p className="text-sm opacity-80 mt-1">Café e um ambiente seguro e acolhedor para os pais aguardarem.</p>
+                <h3 className="font-display text-2xl font-medium">Lanchonete e Convivência</h3>
+                <p className="text-sm opacity-80 mt-1">Café e um ambiente seguro para os pais aguardarem.</p>
               </div>
             </div>
           </div>

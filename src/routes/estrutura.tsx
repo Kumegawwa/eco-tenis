@@ -61,23 +61,23 @@ function EstruturaPage() {
 
       {/* GALERIA TANGÍVEL */}
       <section className="py-20 md:py-32 border-b border-border/50">
-        <div className="container-prose grid grid-cols-12 gap-4 md:gap-6">
-          <div className="col-span-12 md:col-span-8 aspect-[16/10] overflow-hidden group relative">
+        <div className="container-prose grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <div className="relative aspect-[4/3] overflow-hidden group">
             <img src={courtAerial} alt="Quadras de Saibro" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/80 to-transparent" />
             <h3 className="absolute bottom-6 left-6 text-bone font-display text-2xl font-medium">As Quadras de Saibro</h3>
           </div>
-          <div className="col-span-6 md:col-span-4 aspect-[4/5] md:aspect-auto overflow-hidden group relative">
+          <div className="relative aspect-[4/3] overflow-hidden group">
             <img src={covered} alt="Quadras Cobertas" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/80 to-transparent" />
-            <h3 className="absolute bottom-6 left-6 text-bone font-display text-xl font-medium">Cobertura Premium</h3>
+            <h3 className="absolute bottom-6 left-6 text-bone font-display text-2xl font-medium">Cobertura Premium</h3>
           </div>
-          <div className="col-span-6 md:col-span-4 aspect-[4/5] overflow-hidden group relative">
+          <div className="relative aspect-[4/3] overflow-hidden group">
             <img src={coaching} alt="Vestiários e Fitness" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/80 to-transparent" />
-            <h3 className="absolute bottom-6 left-6 text-bone font-display text-xl font-medium">Vestiários e Fitness</h3>
+            <h3 className="absolute bottom-6 left-6 text-bone font-display text-2xl font-medium">Vestiários e Fitness</h3>
           </div>
-          <div className="col-span-12 md:col-span-8 aspect-[16/9] overflow-hidden group relative">
+          <div className="relative aspect-[4/3] overflow-hidden group">
             <img src={lifestyle} alt="Área de Convivência" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/80 to-transparent" />
             <h3 className="absolute bottom-6 left-6 text-bone font-display text-2xl font-medium">Convivência e Conveniência</h3>
