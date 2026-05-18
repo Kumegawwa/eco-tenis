@@ -11,7 +11,7 @@ import coach1 from "@/assets/coach-1.jpg";
 import coach2 from "@/assets/coach-2.jpg";
 import coach3 from "@/assets/coach-3.jpg";
 
-// Importando os componentes UI que você já possui
+// Importando os componentes UI
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -58,14 +58,12 @@ const coaches = [
   { name: "Eduardo Borges dos Reis", role: "Performance · CBT", bio: "Preparação técnica e tática para jovens talentos e jogadores em busca de alto rendimento.", img: coach3 },
 ];
 
-// AJUSTE 2: Depoimentos autênticos com imagens e tempo
 const testimonials = [
   { quote: "Meu filho começou aos 7 anos. Hoje, aos 12, joga federado. O cuidado da equipe técnica é incomparável e o ambiente é super seguro.", who: "Carolina M.", time: "Mãe de aluno há 5 anos", img: "https://i.pravatar.cc/150?u=carolina" },
   { quote: "Voltei a jogar depois de 20 anos. As quadras de saibro são perfeitas para os joelhos e o ambiente do Eco me devolveu o prazer pelo esporte.", who: "Ricardo F.", time: "Sócio há 2 anos, 54 anos", img: "https://i.pravatar.cc/150?u=ricardo" },
   { quote: "É o clube de tênis mais elegante e bem estruturado de Curitiba — mas sem perder o calor humano e a facilidade de acesso.", who: "Luciana A.", time: "Sócia há 8 anos", img: "https://i.pravatar.cc/150?u=luciana" },
 ];
 
-// AJUSTE 4: Perguntas Frequentes
 const faqs = [
   { q: "Preciso ter raquete própria para a aula experimental?", a: "Não! Nós emprestamos todo o material necessário (raquete e bolas) para as suas primeiras aulas. Venha apenas com roupas leves e tênis esportivo." },
   { q: "Qual a idade mínima para o tênis infantil?", a: "Aceitamos crianças a partir de 5 anos de idade na nossa metodologia de iniciação lúdica, focada no desenvolvimento da coordenação motora." },
@@ -76,13 +74,13 @@ const faqs = [
 function HomePage() {
   return (
     <PageShell overlayHeader>
-      {/* HERO */}
-      <section className="relative h-[100svh] min-h-[640px] flex items-end overflow-hidden">
+      {/* HERO AJUSTADO PARA MOBILE */}
+      <section className="relative min-h-[100svh] flex flex-col justify-end pb-32 pt-32 md:pb-36 overflow-hidden bg-ink">
         <img src={hero} alt="Quadra de saibro do Eco Tênis ao pôr do sol" className="absolute inset-0 h-full w-full object-cover scale-105" loading="eager" fetchPriority="high" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/30" />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/60 via-transparent to-transparent" />
 
-        <div className="container-prose relative z-10 pb-20 md:pb-28 text-bone">
+        <div className="container-prose relative z-10 text-bone mt-auto w-full">
           <div className="eyebrow opacity-80 animate-rise">Curitiba · Santa Felicidade · Desde 2009</div>
           <h1 className="mt-6 font-display font-light text-[clamp(2.75rem,8vw,7rem)] leading-[0.95] tracking-tight max-w-5xl text-balance animate-rise delay-100">
             Esporte<br />
@@ -93,12 +91,12 @@ function HomePage() {
             Saibro original, professores CBT/ITF e uma comunidade que escolheu o
             esporte como modo de vida.
           </p>
-          <div className="mt-10 flex flex-wrap items-center gap-4 animate-rise delay-300">
-            
-            {/* AJUSTE 6: Modal Inteligente (Dialog) ao invés de enviar para outra página */}
+          
+          {/* BOTÕES DE AÇÃO: Flex Column no Celular, Row no Desktop */}
+          <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 animate-rise delay-300 w-full sm:w-auto">
             <Dialog>
               <DialogTrigger asChild>
-                <button className="group cursor-pointer inline-flex items-center gap-3 px-7 py-4 bg-bone text-ink text-[12px] tracking-[0.22em] uppercase font-medium hover:bg-accent hover:text-accent-foreground transition-colors">
+                <button className="group cursor-pointer inline-flex justify-center items-center gap-3 px-7 py-4 bg-bone text-ink text-[12px] tracking-[0.22em] uppercase font-medium hover:bg-accent hover:text-accent-foreground transition-colors w-full sm:w-auto text-center">
                   Agendar aula experimental
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </button>
@@ -137,22 +135,23 @@ function HomePage() {
               href="https://wa.me/5541991319654"
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-3 px-7 py-4 border border-bone/40 text-[12px] tracking-[0.22em] uppercase hover:bg-bone/10 transition-colors"
+              className="inline-flex justify-center items-center gap-3 px-7 py-4 border border-bone/40 text-[12px] tracking-[0.22em] uppercase hover:bg-bone/10 transition-colors w-full sm:w-auto text-center"
             >
               Falar no WhatsApp
             </a>
           </div>
         </div>
 
+        {/* BOTTOM BAR BADGES: Flex Wrap e proteção de quebra */}
         <div className="absolute bottom-0 left-0 right-0 border-t border-bone/15 bg-ink/40 backdrop-blur-sm">
-          <div className="container-prose py-4 flex flex-wrap items-center justify-between gap-3 text-bone/80 text-[11px] tracking-[0.22em] uppercase">
-            <span>15+ anos de tradição</span>
+          <div className="container-prose py-4 flex flex-wrap items-center justify-center md:justify-between gap-x-3 gap-y-2 md:gap-x-4 text-bone/80 text-[10px] md:text-[11px] tracking-[0.22em] uppercase leading-relaxed text-center">
+            <span className="whitespace-nowrap">15+ anos de tradição</span>
             <span className="hidden md:inline opacity-40">·</span>
-            <span>6 quadras de saibro</span>
+            <span className="whitespace-nowrap">6 quadras de saibro</span>
             <span className="hidden md:inline opacity-40">·</span>
-            <span>Professores CBT / ITF</span>
+            <span className="whitespace-nowrap">Professores CBT / ITF</span>
             <span className="hidden md:inline opacity-40">·</span>
-            <span>Quadras cobertas</span>
+            <span className="whitespace-nowrap">Quadras cobertas</span>
           </div>
         </div>
       </section>
@@ -273,7 +272,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* AJUSTE 3: ESTRUTURA TANGIBILIZADA COM LABELS */}
+      {/* ESTRUTURA TANGIBILIZADA */}
       <section className="py-24 md:py-32">
         <div className="container-prose">
           <div className="mb-16">
@@ -319,7 +318,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* AJUSTE 2: TESTIMONIALS COM AVATAR SHADCN */}
+      {/* TESTIMONIALS */}
       <section className="py-24 md:py-32 bg-secondary">
         <div className="container-prose">
           <div className="eyebrow text-accent text-center">Quem joga aqui</div>
@@ -351,7 +350,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* AJUSTE 4: FAQ COM ACCORDION SHADCN */}
+      {/* FAQ */}
       <section className="py-24 md:py-32">
         <div className="container-prose max-w-4xl mx-auto">
           <div className="text-center mb-12">
@@ -373,7 +372,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* AJUSTE 1: MAPEAMENTO GOOGLE MAPS */}
+      {/* MAPEAMENTO GOOGLE MAPS */}
       <section className="py-24 md:py-32 bg-ink text-bone">
         <div className="container-prose">
           <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -415,7 +414,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* AJUSTE 5: FEED DO INSTAGRAM MOCK */}
+      {/* FEED DO INSTAGRAM MOCK */}
       <section className="py-16 border-b border-border/50">
         <div className="container-prose text-center mb-10">
           <Instagram className="h-8 w-8 mx-auto text-muted-foreground mb-4" />
