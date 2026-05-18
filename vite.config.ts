@@ -4,6 +4,8 @@ import viteReact from "@vitejs/plugin-react";
 import tsConfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "@tailwindcss/vite";
 
+process.env.NITRO_PRESET = "vercel";
+
 export default defineConfig({
   plugins: [
     tanstackStart({
