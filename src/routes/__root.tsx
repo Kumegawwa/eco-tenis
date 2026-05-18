@@ -23,6 +23,9 @@ function RootComponent() {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
+  // Identifica se o usuário está na página inicial
+  const isHome = location.pathname === "/";
+
   return (
     <html lang="pt-BR">
       <head>
@@ -33,13 +36,22 @@ function RootComponent() {
       </head>
       <body className="min-h-screen flex flex-col bg-background text-foreground antialiased selection:bg-accent selection:text-white">
         
-        {/* HEADER PREMIUM */}
-        <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-ink/95 backdrop-blur-md py-4 border-b border-white/5 shadow-2xl' : 'bg-transparent py-6'}`}>
+        {/* HEADER PREMIUM ADAPTATIVO */}
+        <header 
+          className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+            isHome 
+              ? isScrolled 
+                ? 'bg-ink/95 backdrop-blur-md py-4 border-b border-white/5 shadow-2xl' 
+                : 'bg-transparent py-6'
+              : 'bg-ink/95 backdrop-blur-md py-4 border-b border-white/5 shadow-2xl'
+          }`}
+        >
           <div className="container-prose flex items-center justify-between">
             <Link to="/" className="text-bone font-display text-2xl tracking-widest uppercase flex items-center gap-2 z-50">
               Eco<span className="font-serif-display italic text-accent lowercase">Tênis</span>
             </Link>
 
+            {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-8 text-[11px] tracking-[0.2em] uppercase text-bone/80">
               <Link to="/sobre" className="hover:text-accent transition-colors [&.active]:text-accent">A História</Link>
               <Link to="/estrutura" className="hover:text-accent transition-colors [&.active]:text-accent">Estrutura</Link>
@@ -54,11 +66,13 @@ function RootComponent() {
               </a>
             </div>
 
+            {/* Mobile Toggle */}
             <button className="md:hidden text-bone z-50" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? <X /> : <Menu />}
             </button>
           </div>
 
+          {/* Mobile Menu Overlay */}
           {mobileMenuOpen && (
             <div className="fixed inset-0 bg-ink z-40 flex flex-col items-center justify-center gap-8 text-bone text-sm tracking-widest uppercase animate-in fade-in zoom-in duration-300">
               <Link to="/" className="hover:text-accent transition-colors">Início</Link>
@@ -130,7 +144,6 @@ function RootComponent() {
           </div>
           
           <div className="container-prose mt-16 pt-8 border-t border-bone/10 flex flex-col justify-center items-center gap-6">
-            {/* Assinatura Minimalista Premium */}
             <div className="flex flex-col items-center justify-center gap-2 text-xs text-bone/60 text-center">
               <p>© {new Date().getFullYear()} Eco Tênis Academia. Todos os direitos reservados.</p>
               
