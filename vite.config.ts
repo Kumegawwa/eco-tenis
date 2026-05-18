@@ -4,6 +4,7 @@ import viteReact from "@vitejs/plugin-react";
 import tsConfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "@tailwindcss/vite";
 
+// A linha mágica que avisa o motor para gerar as funções da Vercel:
 process.env.NITRO_PRESET = "vercel";
 
 export default defineConfig({
