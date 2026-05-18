@@ -1,19 +1,13 @@
-import { defineConfig } from "vite";
-import { tanstackStart } from "@tanstack/react-start/plugin/vite";
-import viteReact from "@vitejs/plugin-react";
-import tsConfigPaths from "vite-tsconfig-paths";
+import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import tailwindcss from "@tailwindcss/vite";
-
-// A linha mágica que avisa o motor para gerar as funções da Vercel:
-process.env.NITRO_PRESET = "vercel";
+import tsConfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [
-    tanstackStart({
-      server: { entry: "./src/server.ts" }
-    }),
-    viteReact(),
     tailwindcss(),
     tsConfigPaths(),
   ],
+  tanstackStart: {
+    server: { entry: "./src/server.ts" }
+  },
 });
